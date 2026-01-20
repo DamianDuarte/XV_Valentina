@@ -103,7 +103,7 @@ function App() {
 
             /* MOBILE */
             top-[25%]
-            px-5 py-2 text-lg whitespace-nowrap rounded-lg
+            px-5 py-2 text-lg whitespace-nowrap rounded-[50%]
             shadow-[0_0_12px_rgba(255,215,0,0.6)]
 
             /* DESKTOP */
