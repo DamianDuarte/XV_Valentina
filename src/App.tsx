@@ -1,16 +1,32 @@
 import "./App.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FairyButton from "./components/FairyButton";
 
 function App() {
   const video1Ref = useRef<HTMLVideoElement | null>(null);
   const video2Ref = useRef<HTMLVideoElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const [entered, setEntered] = useState(false);
   const [showSecond, setShowSecond] = useState(false);
-  const [ShowButton, setShowButton] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
+  // 🎵 Inicializar audio (NO reproducir todavía)
+  useEffect(() => {
+    audioRef.current = new Audio("/music.mp3");
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.4;
+  }, []);
+
+  // 👉 Click en la pre-pantalla
+  const handleEnter = () => {
+    audioRef.current?.play().catch(() => {});
+    setEntered(true);
+  };
+
+  // 🎬 Fin del video 1
   const handleEnded = () => {
-    if (!video1Ref.current || !video2Ref.current) return;
+    if (!video2Ref.current) return;
 
     video2Ref.current.currentTime = 0;
     video2Ref.current.loop = true;
@@ -23,12 +39,29 @@ function App() {
     }, 2000);
   };
 
+  // 🟣 PRE PANTALLA
+  if (!entered) {
+    return (
+      <div
+        className="fixed inset-0 bg-cover bg-center flex items-center justify-center"
+        style={{ backgroundImage: "url('/portal.png')" }}
+      >
+        <FairyButton
+          text="Entrar al portal"
+          onClick={handleEnter}
+          className="animate-fairyAppear"
+        />
+      </div>
+    );
+  }
+
+  // 🟢 EXPERIENCIA PRINCIPAL
   return (
     <>
       {/* VIDEO 1 */}
       <video
         ref={video1Ref}
-        className={`fixed inset-0 w-full h-full -z-30 
+        className={`fixed inset-0 w-full h-full -z-30
           transition-opacity duration-1000 ease-in-out
           ${showSecond ? "opacity-0" : "opacity-100"}`}
         autoPlay
@@ -43,59 +76,52 @@ function App() {
       <video
         ref={video2Ref}
         className={`fixed inset-0 w-full h-full object-cover -z-30
-    transition-opacity duration-1500 ease-in-out
-    ${showSecond ? "opacity-100" : "opacity-0"}`}
+          transition-opacity duration-1500 ease-in-out
+          ${showSecond ? "opacity-100" : "opacity-0"}`}
         muted
         playsInline
+        loop
         style={{
           WebkitMaskImage:
             "radial-gradient(circle at center, black 60%, transparent 100%)",
           maskImage:
             "radial-gradient(circle at center, black 60%, transparent 100%)",
         }}
-        loop
+        onPlay={() => {
+          audioRef.current?.play().catch(() => {});
+        }}
       >
         <source src="/background2.webm" type="video/webm" />
       </video>
-      {ShowButton && (
+
+      {/* BOTÓN */}
+      {showButton && (
         <FairyButton
-          text="Confirmar asistencia"
+          text="Adentrate en la magia"
           className="
-    absolute
-    z-20
-    opacity-0
-    animate-fairyAppear
+            absolute z-20 opacity-0 animate-fairyAppear
 
-    /* MOBILE */
-    top-[25%]
-    px-5
-    py-2
-    text-lg
-    whitespace-nowrap
-    rounded-lx
-    shadow-[0_0_12px_rgba(255,215,0,0.6)]
+            /* MOBILE */
+            top-[25%]
+            px-5 py-2 text-lg whitespace-nowrap rounded-lg
+            shadow-[0_0_12px_rgba(255,215,0,0.6)]
 
-    /* DESKTOP */
-    md:top-[23%]
-    md:px-10
-    md:py-4
-    md:text-xl
-    md:rounded-full
-    
+            /* DESKTOP */
+            md:top-[23%]
+            md:px-10 md:py-4 md:text-xl md:rounded-full
 
-    left-1/2
-    -translate-x-1/2
-  "
+            left-1/2 -translate-x-1/2
+          "
         />
       )}
 
-      {/* IMAGEN FONDO 1 */}
+      {/* IMAGEN FONDO */}
       <div
-        className={`fixed inset-0 bg-center bg-cover -z-100
+        className={`fixed inset-0 bg-center bg-cover -z-40
           transition-opacity duration-1000 ease-in-out
           ${showSecond ? "opacity-0" : "opacity-100"}`}
         style={{ backgroundImage: "url('/blur.png')" }}
-      ></div>
+      />
     </>
   );
 }
