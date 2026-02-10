@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useRef, useState } from "react";
 import EnterPage from "./pages/intro";
 import FairyButton from "./components/FairyButton";
+import MagicForm from "./pages/form";
 
 function App() {
   const video1Ref = useRef<HTMLVideoElement | null>(null);
@@ -11,6 +12,7 @@ function App() {
   const [entered, setEntered] = useState(false);
   const [showSecond, setShowSecond] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   // 🎵 Inicializar audio
   useEffect(() => {
@@ -43,6 +45,11 @@ function App() {
   // 🟣 INTRO
   if (!entered) {
     return <EnterPage onEnter={handleEnter} />;
+  }
+
+  // ✨ FORMULARIO
+  if (showForm) {
+    return <MagicForm />;
   }
 
   // 🟢 EXPERIENCIA
@@ -88,6 +95,7 @@ function App() {
       {showButton && (
         <FairyButton
           text="Adentrate en la magia"
+          onClick={() => setShowForm(true)}
           className="
             absolute z-20 opacity-0 animate-fairyAppear
 
