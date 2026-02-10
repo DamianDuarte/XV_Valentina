@@ -49,12 +49,12 @@ export default function MagicForm() {
                 <span className="text-pink-200 font-semibold">
                   Código de vestimenta:
                 </span>{" "}
-                Elegante
+                Formal
               </p>
 
               <p>
-                <span className="text-pink-200 font-semibold">Fecha:</span> 15
-                de Junio de 2026
+                <span className="text-pink-200 font-semibold">Fecha:</span> 11
+                de abril de 2026
               </p>
 
               <p>
@@ -64,7 +64,7 @@ export default function MagicForm() {
 
               <p>
                 <span className="text-pink-200 font-semibold">Lugar:</span>{" "}
-                Salón Portal Real
+                Barile Eventos
               </p>
             </div>
 
@@ -72,7 +72,7 @@ export default function MagicForm() {
             <div className="w-full h-64 md:h-full rounded-2xl overflow-hidden border border-white/30 shadow-xl">
               <iframe
                 title="Mapa"
-                src="https://www.google.com/maps?q=Salon%20Portal%20Real&output=embed"
+                src="https://www.google.com/maps?q=Luis%20Atenzo%206340%20Gonz%C3%A1lez%20Cat%C3%A1n%20Buenos%20Aires&output=embed"
                 className="w-full h-full"
                 loading="lazy"
               />
