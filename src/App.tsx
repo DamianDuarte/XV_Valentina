@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
+import EnterPage from "./pages/intro";
 import FairyButton from "./components/FairyButton";
 
 function App() {
@@ -11,14 +12,14 @@ function App() {
   const [showSecond, setShowSecond] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
-  // 🎵 Inicializar audio (NO reproducir todavía)
+  // 🎵 Inicializar audio
   useEffect(() => {
     audioRef.current = new Audio("/music.mp3");
     audioRef.current.loop = true;
     audioRef.current.volume = 0.4;
   }, []);
 
-  // 👉 Click en la pre-pantalla
+  // 👉 Click en intro
   const handleEnter = () => {
     audioRef.current?.play().catch(() => {});
     setEntered(true);
@@ -39,23 +40,12 @@ function App() {
     }, 2000);
   };
 
-  // 🟣 PRE PANTALLA
+  // 🟣 INTRO
   if (!entered) {
-    return (
-      <div
-        className="fixed inset-0 bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: "url('/portal.png')" }}
-      >
-        <FairyButton
-          text="Entrar al portal"
-          onClick={handleEnter}
-          className="animate-fairyAppear"
-        />
-      </div>
-    );
+    return <EnterPage onEnter={handleEnter} />;
   }
 
-  // 🟢 EXPERIENCIA PRINCIPAL
+  // 🟢 EXPERIENCIA
   return (
     <>
       {/* VIDEO 1 */}
@@ -101,12 +91,10 @@ function App() {
           className="
             absolute z-20 opacity-0 animate-fairyAppear
 
-            /* MOBILE */
             top-[25%]
             px-5 py-2 text-lg whitespace-nowrap rounded-[50%]
             shadow-[0_0_12px_rgba(255,215,0,0.6)]
 
-            /* DESKTOP */
             md:top-[23%]
             md:px-10 md:py-4 md:text-xl md:rounded-full
 
@@ -115,7 +103,7 @@ function App() {
         />
       )}
 
-      {/* IMAGEN FONDO */}
+      {/* FONDO BLUR */}
       <div
         className={`fixed inset-0 bg-center bg-cover -z-40
           transition-opacity duration-1000 ease-in-out

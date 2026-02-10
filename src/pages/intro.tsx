@@ -2,53 +2,44 @@ type Props = {
   onEnter: () => void;
 };
 
-export default function Intro({ onEnter }: Props) {
+export default function EnterPage({ onEnter }: Props) {
   return (
-    <div className="fixed inset-0 z-999 bg-black">
-      {/* Fondo */}
+    <div className="fixed inset-0 overflow-hidden">
+      {/* FONDO */}
       <img
         src="/portal.png"
         alt="Portal"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       />
 
-      {/* Overlay suave */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-
-      {/* BOTÓN = IMAGEN */}
-      <div className="relative z-10 flex items-center justify-center h-full">
-        <button
-          onClick={onEnter}
-          aria-label="Entrar al portal"
+      {/* IMAGEN CLICKEABLE */}
+      <div
+        role="button"
+        aria-label="Entrar al portal"
+        onClick={onEnter}
+        className="
+          absolute inset-0
+          flex items-center justify-center
+          z-10
+          cursor-pointer
+        "
+      >
+        <img
+          src="/portal_button.png"
+          alt=""
+          draggable={false}
           className="
-            bg-transparent
-            border-0
-            p-0
-            cursor-pointer
+            w-48 h-48
             select-none
-            outline-none
-            transition-transform
-            duration-300
-            ease-out
-            active:scale-95
-            focus-visible:ring-4
-            focus-visible:ring-yellow-300/60
+            pointer-events-none
+
+            drop-shadow-[0_0_40px_rgba(255,215,0,0.9)]
+            hover:scale-110
+            transition-transform duration-300 ease-out
+
+            animate-[fairyFloat_3s_ease-in-out_infinite]
           "
-        >
-          <img
-            src="/portal_button.png"
-            alt="Entrar al portal"
-            draggable={false}
-            className="
-              w-40 h-40
-              md:w-56 md:h-56
-              object-contain
-              transition-transform
-              duration-500
-              hover:scale-105
-            "
-          />
-        </button>
+        />
       </div>
     </div>
   );
