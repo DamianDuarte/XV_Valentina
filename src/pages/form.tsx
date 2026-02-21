@@ -44,23 +44,32 @@ export default function MagicForm() {
   };
 
   return (
-    <div className="fixed inset-0 z-40 overflow-y-auto md:overflow-hidden">
+    <div
+      className="
+        fixed md:absolute
+        inset-0
+        z-40
+        w-full
+        min-h-screen
+        overflow-y-auto md:overflow-hidden
+      "
+    >
       {/* 🎬 VIDEO */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full min-h-dvh object-cover"
       >
         <source src="/background2.webm" type="video/webm" />
       </video>
 
       {/* 🌫 Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm min-h-dvh" />
 
       {/* ✨ PARTÍCULAS */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden min-h-dvh">
         {[...Array(30)].map((_, i) => (
           <span
             key={i}
@@ -90,33 +99,35 @@ export default function MagicForm() {
 
       {/* CONTENEDOR PRINCIPAL */}
       <div
-        className="relative z-50 
-        flex items-start md:items-center 
-        justify-center 
-        min-h-screen 
-        px-4 
-        py-16 md:py-0"
+        className="
+          relative z-50
+          flex items-start md:items-center
+          justify-center
+          min-h-screen
+          px-4
+          py-16 md:py-0
+        "
       >
         <form
           onSubmit={handleSubmit}
-          className="relative w-full max-w-5xl 
-          px-6 md:px-10 
-          py-10 md:py-12 
-          rounded-3xl
-          bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10
-          backdrop-blur-xl border border-yellow-400/40
-          shadow-[0_0_80px_rgba(255,215,0,0.35)]
-          overflow-hidden 
-          space-y-10 md:space-y-12"
+          className="
+            relative w-full max-w-5xl
+            px-6 md:px-10
+            py-10 md:py-12
+            rounded-3xl
+            bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10
+            backdrop-blur-xl border border-yellow-400/40
+            shadow-[0_0_80px_rgba(255,215,0,0.35)]
+            overflow-hidden
+            space-y-10 md:space-y-12
+          "
         >
-          {/* ✨ Glow interno */}
           <div
             className="absolute inset-0 rounded-3xl
             bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25),transparent_70%)]
             animate-pulse pointer-events-none"
           />
 
-          {/* 👑 TÍTULO */}
           <h3
             className="relative text-3xl md:text-4xl text-center font-serif tracking-wide
             text-yellow-300
@@ -125,7 +136,6 @@ export default function MagicForm() {
             ✨ Estás invitado ✨
           </h3>
 
-          {/* INFO + MAPA */}
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
             <div className="space-y-4 text-base md:text-lg">
               <p>
@@ -161,7 +171,6 @@ export default function MagicForm() {
             </div>
           </div>
 
-          {/* FORM */}
           <div className="relative space-y-8">
             <h4 className="text-xl md:text-2xl text-center text-yellow-200">
               Confirmar asistencia
@@ -197,7 +206,6 @@ export default function MagicForm() {
                 min="1"
                 value={cantidad}
                 onChange={(e) => setCantidad(Number(e.target.value))}
-                placeholder="Cantidad"
                 className="px-6 py-4 rounded-xl bg-white/5
                 border border-yellow-400/30 text-white text-lg
                 placeholder-white/60
