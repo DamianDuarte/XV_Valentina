@@ -90,6 +90,38 @@ drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]
 "
         />
       )}
+      <a
+        href="https://app.eventocam.com/galeria-unificada3/n3mHgCt71lMw"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="
+  absolute z-20 opacity-0 animate-fairyAppear
+  bottom-[18%] md:bottom-[16%]
+  left-1/2 -translate-x-1/2
+
+  px-5 py-2 md:px-6 md:py-2.5
+  text-lg md:text-xl
+  whitespace-nowrap
+
+  rounded-full
+
+  bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500
+  text-black
+  tracking-wide
+
+  shadow-[0_0_20px_rgba(255,215,0,0.7)]
+  border border-yellow-100/40
+
+  hover:scale-105
+  hover:shadow-[0_0_35px_rgba(255,215,0,1)]
+  transition-all duration-300
+
+  font-['DisneyDreams']
+  drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]
+  "
+      >
+        Book de Fotos
+      </a>
     </>
   );
 }

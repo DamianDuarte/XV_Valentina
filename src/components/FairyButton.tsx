@@ -18,7 +18,7 @@ export default function FairyButton({
   font-disney
   text-xl
   tracking-wide
-  text-yellow-200
+  text-black
 
   bg-linear-to-b
   from-yellow-500
