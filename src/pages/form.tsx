@@ -13,14 +13,18 @@ export default function MagicForm() {
       return;
     }
 
-    const numero = "5491131418677"; // número de prueba
-    const mensaje = `✨ ¡El portal se ha abierto! ✨
-Yo ${nombre} ${apellido} confirmo mi asistencia a esta noche mágica.
-Gracias por permitirme ser parte de este capítulo tan especial.
-¡Nos vemos bajo las estrellas! 🌙💖`;
-    const mensajeCodificado = encodeURIComponent(mensaje);
+    const numero = "5491126509866";
 
-    const url = `https://wa.me/${numero}?text=${mensajeCodificado}`;
+    const mensaje = [
+      " ¡El portal se ha abierto!",
+      "",
+      `Yo ${nombre} ${apellido} confirmo mi asistencia a esta noche mágica.`,
+      "Gracias por permitirme ser parte de este capítulo tan especial.",
+      "",
+      "¡Nos vemos bajo las estrellas! ",
+    ].join("\n");
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
     window.open(url, "_blank");
 
