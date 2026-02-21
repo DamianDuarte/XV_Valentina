@@ -127,7 +127,7 @@ export default function MagicForm() {
 
           <div className="relative space-y-8">
             <h4 className="text-xl md:text-2xl text-center text-yellow-200">
-              Confirmar asistencia
+              Confirmar asistencia y cantidad de asistentes
             </h4>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
