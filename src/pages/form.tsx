@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function MagicForm() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
+  const [cantidad, setCantidad] = useState(1);
   const [mensajeEnviado, setMensajeEnviado] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -13,15 +14,21 @@ export default function MagicForm() {
       return;
     }
 
+    if (cantidad < 1) {
+      alert("Ingresá al menos 1 asistente ✨");
+      return;
+    }
+
     const numero = "5491126509866";
 
     const mensaje = [
-      " ¡El portal se ha abierto!",
+      "¡El portal se ha abierto!",
       "",
-      `Yo ${nombre} ${apellido} confirmo mi asistencia a esta noche mágica.`,
+      `Yo ${nombre} ${apellido} confirmo mi asistencia.`,
+      `Cantidad de asistentes: ${cantidad}`,
       "Gracias por permitirme ser parte de este capítulo tan especial.",
       "",
-      "¡Nos vemos bajo las estrellas! ",
+      "¡Nos vemos bajo las estrellas!",
     ].join("\n");
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
@@ -29,18 +36,16 @@ export default function MagicForm() {
     window.open(url, "_blank");
 
     setMensajeEnviado(true);
-
-    setTimeout(() => {
-      setMensajeEnviado(false);
-    }, 4000);
+    setTimeout(() => setMensajeEnviado(false), 4000);
 
     setNombre("");
     setApellido("");
+    setCantidad(1);
   };
 
   return (
     <div className="fixed inset-0 z-40 overflow-hidden">
-      {/* 🎬 VIDEO DE FONDO */}
+      {/* 🎬 VIDEO */}
       <video
         autoPlay
         loop
@@ -51,76 +56,90 @@ export default function MagicForm() {
         <source src="/background2.webm" type="video/webm" />
       </video>
 
-      {/* 🌫️ OVERLAY */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      {/* 🌫 Overlay */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-      {/* ✨ MENSAJE MÁGICO */}
+      {/* ✨ PARTÍCULAS */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(30)].map((_, i) => (
+          <span
+            key={i}
+            className="absolute w-2 h-2 bg-yellow-300 rounded-full opacity-70 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${6 + Math.random() * 10}s`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ✨ MENSAJE */}
       {mensajeEnviado && (
         <div
-          className="absolute top-10 left-1/2 -translate-x-1/2 z-[999]
+          className="absolute top-10 left-1/2 -translate-x-1/2 z-999
           px-8 py-4 rounded-full
-          bg-linear-to-r from-pink-400 via-fuchsia-400 to-purple-500
-          text-white text-lg font-semibold
-          shadow-[0_0_40px_rgba(236,72,153,1)]"
+          bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
+          text-black text-lg font-semibold
+          shadow-[0_0_40px_rgba(255,215,0,1)]"
         >
           ✨ Tu mensaje fue enviado al reino mágico ✨
         </div>
       )}
 
-      {/* ✨ CONTENEDOR CENTRAL */}
       <div className="relative z-50 flex items-center justify-center h-full px-4">
         <form
           onSubmit={handleSubmit}
           className="relative w-full max-w-5xl px-10 py-12 rounded-3xl
-          bg-linear-to-b from-white/20 via-pink-200/10 to-purple-200/10
-          backdrop-blur-xl border border-white/30
-          shadow-[0_0_80px_rgba(236,72,153,0.35)]
+          bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10
+          backdrop-blur-xl border border-yellow-400/40
+          shadow-[0_0_80px_rgba(255,215,0,0.35)]
           overflow-hidden space-y-12"
         >
-          {/* ✨ Brillos */}
-          <div className="pointer-events-none absolute inset-0">
-            <span className="sparkle absolute top-10 left-10" />
-            <span className="sparkle absolute top-1/3 right-16" />
-            <span className="sparkle absolute bottom-16 left-1/4" />
-            <span className="sparkle absolute bottom-10 right-10" />
-          </div>
+          {/* ✨ Glow dorado interno */}
+          <div
+            className="absolute inset-0 rounded-3xl
+            bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25),transparent_70%)]
+            animate-pulse pointer-events-none"
+          />
 
-          {/* Aura */}
-          <div className="absolute -top-24 -left-24 w-72 h-72 bg-pink-300/30 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-purple-300/30 rounded-full blur-3xl animate-pulse" />
-
-          {/* 🪄 TÍTULO */}
-          <h3 className="relative text-4xl text-center font-semibold tracking-wide text-white drop-shadow-lg">
+          {/* 👑 TÍTULO */}
+          <h3
+            className="relative text-4xl text-center font-serif tracking-wide
+            text-yellow-300
+            drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]"
+          >
             ✨ Estás invitado ✨
           </h3>
 
-          {/* 📍 INFO + MAPA */}
+          {/* INFO + MAPA */}
           <div className="relative grid md:grid-cols-2 gap-8 items-stretch text-white">
             <div className="space-y-4 text-lg">
               <p>
-                <span className="text-pink-200 font-semibold">
+                <span className="text-yellow-300 font-semibold">
                   Código de vestimenta:
                 </span>{" "}
-                Formal
+                Formal/Elegante
               </p>
 
               <p>
-                <span className="text-pink-200 font-semibold">Fecha:</span> 11
+                <span className="text-yellow-300 font-semibold">Fecha:</span> 11
                 de abril de 2026
               </p>
 
               <p>
-                <span className="text-pink-200 font-semibold">Hora:</span> 21:00
-                hs
+                <span className="text-yellow-300 font-semibold">Hora:</span>{" "}
+                21:00 hs
               </p>
 
               <p>
-                <span className="text-pink-200 font-semibold">Lugar:</span>{" "}
+                <span className="text-yellow-300 font-semibold">Lugar:</span>{" "}
                 Barile Eventos
               </p>
             </div>
 
-            <div className="w-full h-64 md:h-full rounded-2xl overflow-hidden border border-white/30 shadow-xl">
+            <div className="w-full h-64 md:h-full rounded-2xl overflow-hidden border border-yellow-400/30 shadow-xl">
               <iframe
                 title="Mapa"
                 src="https://www.google.com/maps?q=Luis%20Atenzo%206340%20Gonz%C3%A1lez%20Cat%C3%A1n%20Buenos%20Aires&output=embed"
@@ -130,23 +149,22 @@ export default function MagicForm() {
             </div>
           </div>
 
-          {/* 📝 FORMULARIO */}
+          {/* FORM */}
           <div className="relative space-y-8">
-            <h4 className="text-2xl text-center text-pink-100">
+            <h4 className="text-2xl text-center text-yellow-200">
               Confirmar asistencia
             </h4>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <input
                 type="text"
                 placeholder="Nombre"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
-                className="px-6 py-4 rounded-xl bg-white/10
-                border border-white/30 text-white text-lg
-                placeholder-white/70
-                focus:outline-none focus:border-pink-300
-                focus:shadow-[0_0_20px_rgba(236,72,153,0.8)]
+                className="px-6 py-4 rounded-xl bg-white/5
+                border border-yellow-400/30 text-white text-lg
+                placeholder-white/60
+                focus:outline-none focus:border-yellow-300
                 transition-all duration-300"
               />
 
@@ -155,26 +173,37 @@ export default function MagicForm() {
                 placeholder="Apellido"
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
-                className="px-6 py-4 rounded-xl bg-white/10
-                border border-white/30 text-white text-lg
-                placeholder-white/70
-                focus:outline-none focus:border-purple-300
-                focus:shadow-[0_0_20px_rgba(168,85,247,0.8)]
+                className="px-6 py-4 rounded-xl bg-white/5
+                border border-yellow-400/30 text-white text-lg
+                placeholder-white/60
+                focus:outline-none focus:border-yellow-300
+                transition-all duration-300"
+              />
+
+              <input
+                type="number"
+                min="1"
+                value={cantidad}
+                onChange={(e) => setCantidad(Number(e.target.value))}
+                placeholder="Cantidad"
+                className="px-6 py-4 rounded-xl bg-white/5
+                border border-yellow-400/30 text-white text-lg
+                placeholder-white/60
+                focus:outline-none focus:border-yellow-300
                 transition-all duration-300"
               />
             </div>
 
             <button
               type="submit"
-              className="relative w-full py-5 rounded-full
-              bg-linear-to-r from-pink-400 via-fuchsia-400 to-purple-500
-              text-white text-2xl font-semibold tracking-wide
-              shadow-[0_0_40px_rgba(236,72,153,0.8)]
-              hover:shadow-[0_0_70px_rgba(236,72,153,1)]
+              className="w-full py-5 rounded-full
+              bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
+              text-black text-2xl font-bold tracking-wide
+              shadow-[0_0_40px_rgba(255,215,0,0.8)]
+              hover:shadow-[0_0_70px_rgba(255,215,0,1)]
               hover:scale-[1.04]
               active:scale-95
-              transition-all duration-300
-              animate-[pulse_4s_ease-in-out_infinite]"
+              transition-all duration-300"
             >
               ✨ Confirmar asistencia ✨
             </button>

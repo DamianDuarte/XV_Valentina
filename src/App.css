@@ -68,3 +68,24 @@
         opacity: 0.4;
     }
 }
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(-25px);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 0.8;
+    }
+}
+
+.animate-float {
+    animation: float linear infinite;
+}
