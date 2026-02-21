@@ -43,7 +43,7 @@ export default function MagicForm() {
   };
 
   return (
-    <div className="relative z-40 min-h-dvh overflow-y-auto font-['DisneyDreams']">
+    <div className="relative z-40 min-h-dvh overflow-y-auto">
       {/* VIDEO */}
       <video
         autoPlay
@@ -68,7 +68,7 @@ export default function MagicForm() {
       <div className="relative z-50 flex items-start md:items-center justify-center min-h-dvh px-4 py-16 md:py-0">
         <form
           onSubmit={handleSubmit}
-          className="relative w-full max-w-5xl px-6 md:px-10 py-10 md:py-12 rounded-3xl bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10 backdrop-blur-xl border border-yellow-400/40 shadow-[0_0_80px_rgba(255,215,0,0.35)] overflow-hidden space-y-10 md:space-y-12 font-['DisneyDreams']"
+          className="relative w-full max-w-5xl px-6 md:px-10 py-10 md:py-12 rounded-3xl bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10 backdrop-blur-xl border border-yellow-400/40 shadow-[0_0_80px_rgba(255,215,0,0.35)] overflow-hidden space-y-10 md:space-y-12 "
         >
           <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25),transparent_70%)] animate-pulse pointer-events-none" />
 
@@ -77,7 +77,7 @@ export default function MagicForm() {
           </h3>
 
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
-            <div className="space-y-4 text-base md:text-lg font-['DisneyDreams']">
+            <div className="space-y-4 text-base md:text-lg ">
               <p>
                 <span className="text-yellow-300">Código de vestimenta:</span>{" "}
                 Formal/Elegante

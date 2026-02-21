@@ -64,28 +64,29 @@ function App() {
           text="Ingresar"
           onClick={() => setShowForm(true)}
           className="
-  absolute z-20 opacity-0 animate-fairyAppear
-  top-[25%] md:top-[23%]
-  left-1/2 -translate-x-1/2
+absolute z-20 opacity-0 animate-fairyAppear
+top-[25%] md:top-[23%]
+left-1/2 -translate-x-1/2
 
-  px-8 py-3 md:px-12 md:py-4
-  text-lg md:text-xl
-  whitespace-nowrap
+px-8 py-3 md:px-10 md:py-4
+text-2xl md:text-3xl
+whitespace-nowrap
 
-  rounded-full
+rounded-full
 
-  bg-linear-to-r from-amber-400 via-yellow-300 to-amber-500
-  text-white
-  tracking-wider
+bg-linear-to-r from-amber-400 via-yellow-300 to-amber-500
+text-black
+tracking-wide
 
-  shadow-[0_0_25px_rgba(255,215,0,0.7)]
-  border border-yellow-200/40
+shadow-[0_0_30px_rgba(255,215,0,0.8)]
+border border-yellow-100/40
 
-  hover:scale-105
-  hover:shadow-[0_0_40px_rgba(255,215,0,0.9)]
-  transition-all duration-300
+hover:scale-105
+hover:shadow-[0_0_50px_rgba(255,215,0,1)]
+transition-all duration-300
 
-  font-(--font-disney)
+font-['DisneyDreams']
+drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]
 "
         />
       )}
