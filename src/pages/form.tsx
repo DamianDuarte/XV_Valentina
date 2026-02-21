@@ -44,20 +44,13 @@ export default function MagicForm() {
 
   return (
     <div className="relative z-40 min-h-dvh overflow-y-auto">
-      {/* 🎬 VIDEO (mobile fixed, desktop normal) */}
+      {/* 🎬 VIDEO */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="
-          fixed md:absolute
-          inset-0
-          w-full
-          h-full
-          object-cover
-          -z-10
-        "
+        className="fixed md:absolute inset-0 w-full h-full object-cover -z-10"
       >
         <source src="/background2.webm" type="video/webm" />
       </video>
@@ -83,47 +76,18 @@ export default function MagicForm() {
 
       {/* ✨ MENSAJE */}
       {mensajeEnviado && (
-        <div
-          className="fixed top-10 left-1/2 -translate-x-1/2 z-50
-          px-8 py-4 rounded-full
-          bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
-          text-black text-lg font-semibold
-          shadow-[0_0_40px_rgba(255,215,0,1)]"
-        >
+        <div className="fixed top-10 left-1/2 -translate-x-1/2 z-50 px-8 py-4 rounded-full bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500 text-black text-lg font-semibold shadow-[0_0_40px_rgba(255,215,0,1)]">
           ✨ Tu mensaje fue enviado al reino mágico ✨
         </div>
       )}
 
       {/* CONTENEDOR PRINCIPAL */}
-      <div
-        className="
-          relative z-50
-          flex items-start md:items-center
-          justify-center
-          min-h-dvh
-          px-4
-          py-16 md:py-0
-        "
-      >
+      <div className="relative z-50 flex items-start md:items-center justify-center min-h-dvh px-4 py-16 md:py-0">
         <form
           onSubmit={handleSubmit}
-          className="
-            relative w-full max-w-5xl
-            px-6 md:px-10
-            py-10 md:py-12
-            rounded-3xl
-            bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10
-            backdrop-blur-xl border border-yellow-400/40
-            shadow-[0_0_80px_rgba(255,215,0,0.35)]
-            overflow-hidden
-            space-y-10 md:space-y-12
-          "
+          className="relative w-full max-w-5xl px-6 md:px-10 py-10 md:py-12 rounded-3xl bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10 backdrop-blur-xl border border-yellow-400/40 shadow-[0_0_80px_rgba(255,215,0,0.35)] overflow-hidden space-y-10 md:space-y-12"
         >
-          <div
-            className="absolute inset-0 rounded-3xl
-            bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25),transparent_70%)]
-            animate-pulse pointer-events-none"
-          />
+          <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25),transparent_70%)] animate-pulse pointer-events-none" />
 
           <h3 className="relative text-3xl md:text-4xl text-center font-serif tracking-wide text-yellow-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]">
             ✨ Estás invitado ✨
@@ -183,13 +147,34 @@ export default function MagicForm() {
                 className="px-6 py-4 rounded-xl bg-white/5 border border-yellow-400/30 text-white text-lg placeholder-white/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"
               />
 
-              <input
-                type="number"
-                min="1"
-                value={cantidad}
-                onChange={(e) => setCantidad(Number(e.target.value))}
-                className="px-6 py-4 rounded-xl bg-white/5 border border-yellow-400/30 text-white text-lg placeholder-white/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"
-              />
+              {/* Selector cantidad personalizado */}
+              <div className="flex items-center rounded-xl bg-white/5 border border-yellow-400/30 overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setCantidad((prev) => Math.max(1, prev - 1))}
+                  className="px-5 py-4 text-xl text-yellow-300 hover:bg-white/10 transition active:scale-90"
+                >
+                  −
+                </button>
+
+                <input
+                  type="number"
+                  min="1"
+                  value={cantidad}
+                  onChange={(e) =>
+                    setCantidad(Math.max(1, Number(e.target.value)))
+                  }
+                  className="w-full text-center bg-transparent text-white text-lg focus:outline-none"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setCantidad((prev) => prev + 1)}
+                  className="px-5 py-4 text-xl text-yellow-300 hover:bg-white/10 transition active:scale-90"
+                >
+                  +
+                </button>
+              </div>
             </div>
 
             <button
