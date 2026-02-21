@@ -73,17 +73,11 @@ function App() {
       <video
         ref={video2Ref}
         className={`fixed inset-0 w-full h-full object-cover -z-30
-          transition-opacity duration-1500 ease-in-out
-          ${showSecond ? "opacity-100" : "opacity-0"}`}
+    transition-opacity duration-1500 ease-in-out
+    ${showSecond ? "opacity-100" : "opacity-0"}`}
         muted
         playsInline
         loop
-        style={{
-          WebkitMaskImage:
-            "radial-gradient(circle at center, black 60%, transparent 100%)",
-          maskImage:
-            "radial-gradient(circle at center, black 60%, transparent 100%)",
-        }}
         onPlay={() => {
           audioRef.current?.play().catch(() => {});
         }}
