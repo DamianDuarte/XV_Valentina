@@ -44,7 +44,7 @@ export default function MagicForm() {
   };
 
   return (
-    <div className="fixed inset-0 z-40 overflow-hidden md:overflow-hidden overflow-y-auto">
+    <div className="fixed inset-0 z-40 overflow-y-auto md:overflow-hidden">
       {/* 🎬 VIDEO */}
       <video
         autoPlay
@@ -78,7 +78,7 @@ export default function MagicForm() {
       {/* ✨ MENSAJE */}
       {mensajeEnviado && (
         <div
-          className="absolute top-10 left-1/2 -translate-x-1/2 z-999
+          className="absolute top-10 left-1/2 -translate-x-1/2 z-50
           px-8 py-4 rounded-full
           bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
           text-black text-lg font-semibold
@@ -88,16 +88,28 @@ export default function MagicForm() {
         </div>
       )}
 
-      <div className="relative z-50 flex items-center justify-center h-full px-4 md:overflow-y-auto">
+      {/* CONTENEDOR PRINCIPAL */}
+      <div
+        className="relative z-50 
+        flex items-start md:items-center 
+        justify-center 
+        min-h-screen 
+        px-4 
+        py-16 md:py-0"
+      >
         <form
           onSubmit={handleSubmit}
-          className="relative w-full max-w-5xl px-10 py-12 rounded-3xl
+          className="relative w-full max-w-5xl 
+          px-6 md:px-10 
+          py-10 md:py-12 
+          rounded-3xl
           bg-linear-to-b from-white/10 via-purple-200/10 to-pink-200/10
           backdrop-blur-xl border border-yellow-400/40
           shadow-[0_0_80px_rgba(255,215,0,0.35)]
-          overflow-hidden space-y-12"
+          overflow-hidden 
+          space-y-10 md:space-y-12"
         >
-          {/* ✨ Glow dorado interno */}
+          {/* ✨ Glow interno */}
           <div
             className="absolute inset-0 rounded-3xl
             bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25),transparent_70%)]
@@ -106,7 +118,7 @@ export default function MagicForm() {
 
           {/* 👑 TÍTULO */}
           <h3
-            className="relative text-4xl text-center font-serif tracking-wide
+            className="relative text-3xl md:text-4xl text-center font-serif tracking-wide
             text-yellow-300
             drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]"
           >
@@ -114,8 +126,8 @@ export default function MagicForm() {
           </h3>
 
           {/* INFO + MAPA */}
-          <div className="relative grid md:grid-cols-2 gap-8 items-stretch text-white">
-            <div className="space-y-4 text-lg">
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
+            <div className="space-y-4 text-base md:text-lg">
               <p>
                 <span className="text-yellow-300 font-semibold">
                   Código de vestimenta:
@@ -151,11 +163,11 @@ export default function MagicForm() {
 
           {/* FORM */}
           <div className="relative space-y-8">
-            <h4 className="text-2xl text-center text-yellow-200">
+            <h4 className="text-xl md:text-2xl text-center text-yellow-200">
               Confirmar asistencia
             </h4>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <input
                 type="text"
                 placeholder="Nombre"
@@ -198,7 +210,7 @@ export default function MagicForm() {
               type="submit"
               className="w-full py-5 rounded-full
               bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
-              text-black text-2xl font-bold tracking-wide
+              text-black text-xl md:text-2xl font-bold tracking-wide
               shadow-[0_0_40px_rgba(255,215,0,0.8)]
               hover:shadow-[0_0_70px_rgba(255,215,0,1)]
               hover:scale-[1.04]
