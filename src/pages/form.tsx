@@ -88,7 +88,7 @@ export default function MagicForm() {
         </div>
       )}
 
-      <div className="relative z-50 flex items-center justify-center h-full px-4">
+      <div className="relative z-50 flex items-center justify-center h-full px-4 md:overflow-y-auto">
         <form
           onSubmit={handleSubmit}
           className="relative w-full max-w-5xl px-10 py-12 rounded-3xl
