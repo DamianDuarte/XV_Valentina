@@ -68,25 +68,25 @@ absolute z-20 opacity-0 animate-fairyAppear
 top-[25%] md:top-[23%]
 left-1/2 -translate-x-1/2
 
-px-8 py-3 md:px-10 md:py-4
-text-2xl md:text-3xl
+px-6 py-2.5 md:px-8 md:py-3
+text-xl md:text-2xl
 whitespace-nowrap
 
 rounded-full
 
-bg-linear-to-r from-amber-400 via-yellow-300 to-amber-500
+bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500
 text-black
 tracking-wide
 
-shadow-[0_0_30px_rgba(255,215,0,0.8)]
+shadow-[0_0_20px_rgba(255,215,0,0.7)]
 border border-yellow-100/40
 
 hover:scale-105
-hover:shadow-[0_0_50px_rgba(255,215,0,1)]
+hover:shadow-[0_0_35px_rgba(255,215,0,1)]
 transition-all duration-300
 
 font-['DisneyDreams']
-drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]
+drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]
 "
         />
       )}
