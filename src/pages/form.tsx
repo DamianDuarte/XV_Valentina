@@ -44,7 +44,7 @@ export default function MagicForm() {
   };
 
   return (
-    <div className="fixed inset-0 z-40 overflow-hidden">
+    <div className="fixed inset-0 z-40 overflow-hidden md:overflow-hidden overflow-y-auto">
       {/* 🎬 VIDEO */}
       <video
         autoPlay
