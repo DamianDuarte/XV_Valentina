@@ -64,14 +64,29 @@ function App() {
           text="Entrar"
           onClick={() => setShowForm(true)}
           className="
-            absolute z-20 opacity-0 animate-fairyAppear
-            top-[25%]
-            px-5 py-2 text-lg whitespace-nowrap rounded-[50%]
-            shadow-[0_0_12px_rgba(255,215,0,0.6)]
-            md:top-[23%]
-            md:px-10 md:py-4 md:text-xl md:rounded-full
-            left-1/2 -translate-x-1/2
-          "
+  absolute z-20 opacity-0 animate-fairyAppear
+  top-[25%] md:top-[23%]
+  left-1/2 -translate-x-1/2
+
+  px-8 py-3 md:px-12 md:py-4
+  text-lg md:text-xl
+  whitespace-nowrap
+
+  rounded-full
+
+  bg-linear-to-r from-amber-400 via-yellow-300 to-amber-500
+  text-white
+  tracking-wider
+
+  shadow-[0_0_25px_rgba(255,215,0,0.7)]
+  border border-yellow-200/40
+
+  hover:scale-105
+  hover:shadow-[0_0_40px_rgba(255,215,0,0.9)]
+  transition-all duration-300
+
+  font-(--font-disney)
+"
         />
       )}
     </>

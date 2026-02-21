@@ -89,3 +89,14 @@
 .animate-float {
     animation: float linear infinite;
 }
+
+@font-face {
+    font-family: "DisneyDreams";
+    src: url("/fonts/DisneyDreams.woff2") format("woff2"),
+        url("/fonts/DisneyDreams.woff") format("woff");
+    font-display: swap;
+}
+
+@theme {
+    --font-disney: "DisneyDreams", cursive;
+}
