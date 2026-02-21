@@ -32,7 +32,6 @@ export default function MagicForm() {
     ].join("\n");
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-
     window.open(url, "_blank");
 
     setMensajeEnviado(true);
@@ -44,32 +43,30 @@ export default function MagicForm() {
   };
 
   return (
-    <div
-      className="
-        fixed md:absolute
-        inset-0
-        z-40
-        w-full
-        min-h-screen
-        overflow-y-auto md:overflow-hidden
-      "
-    >
-      {/* 🎬 VIDEO */}
+    <div className="relative z-40 min-h-dvh overflow-y-auto">
+      {/* 🎬 VIDEO (mobile fixed, desktop normal) */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full min-h-dvh object-cover"
+        className="
+          fixed md:absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          -z-10
+        "
       >
         <source src="/background2.webm" type="video/webm" />
       </video>
 
       {/* 🌫 Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm min-h-dvh" />
+      <div className="fixed md:absolute inset-0 bg-black/50 backdrop-blur-sm -z-10" />
 
       {/* ✨ PARTÍCULAS */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden min-h-dvh">
+      <div className="fixed md:absolute inset-0 pointer-events-none overflow-hidden -z-10">
         {[...Array(30)].map((_, i) => (
           <span
             key={i}
@@ -87,7 +84,7 @@ export default function MagicForm() {
       {/* ✨ MENSAJE */}
       {mensajeEnviado && (
         <div
-          className="absolute top-10 left-1/2 -translate-x-1/2 z-50
+          className="fixed top-10 left-1/2 -translate-x-1/2 z-50
           px-8 py-4 rounded-full
           bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
           text-black text-lg font-semibold
@@ -103,7 +100,7 @@ export default function MagicForm() {
           relative z-50
           flex items-start md:items-center
           justify-center
-          min-h-screen
+          min-h-dvh
           px-4
           py-16 md:py-0
         "
@@ -128,11 +125,7 @@ export default function MagicForm() {
             animate-pulse pointer-events-none"
           />
 
-          <h3
-            className="relative text-3xl md:text-4xl text-center font-serif tracking-wide
-            text-yellow-300
-            drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]"
-          >
+          <h3 className="relative text-3xl md:text-4xl text-center font-serif tracking-wide text-yellow-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]">
             ✨ Estás invitado ✨
           </h3>
 
@@ -144,17 +137,14 @@ export default function MagicForm() {
                 </span>{" "}
                 Formal/Elegante
               </p>
-
               <p>
                 <span className="text-yellow-300 font-semibold">Fecha:</span> 11
                 de abril de 2026
               </p>
-
               <p>
                 <span className="text-yellow-300 font-semibold">Hora:</span>{" "}
                 21:00 hs
               </p>
-
               <p>
                 <span className="text-yellow-300 font-semibold">Lugar:</span>{" "}
                 Barile Eventos
@@ -182,11 +172,7 @@ export default function MagicForm() {
                 placeholder="Nombre"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
-                className="px-6 py-4 rounded-xl bg-white/5
-                border border-yellow-400/30 text-white text-lg
-                placeholder-white/60
-                focus:outline-none focus:border-yellow-300
-                transition-all duration-300"
+                className="px-6 py-4 rounded-xl bg-white/5 border border-yellow-400/30 text-white text-lg placeholder-white/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"
               />
 
               <input
@@ -194,11 +180,7 @@ export default function MagicForm() {
                 placeholder="Apellido"
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
-                className="px-6 py-4 rounded-xl bg-white/5
-                border border-yellow-400/30 text-white text-lg
-                placeholder-white/60
-                focus:outline-none focus:border-yellow-300
-                transition-all duration-300"
+                className="px-6 py-4 rounded-xl bg-white/5 border border-yellow-400/30 text-white text-lg placeholder-white/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"
               />
 
               <input
@@ -206,24 +188,13 @@ export default function MagicForm() {
                 min="1"
                 value={cantidad}
                 onChange={(e) => setCantidad(Number(e.target.value))}
-                className="px-6 py-4 rounded-xl bg-white/5
-                border border-yellow-400/30 text-white text-lg
-                placeholder-white/60
-                focus:outline-none focus:border-yellow-300
-                transition-all duration-300"
+                className="px-6 py-4 rounded-xl bg-white/5 border border-yellow-400/30 text-white text-lg placeholder-white/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-5 rounded-full
-              bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500
-              text-black text-xl md:text-2xl font-bold tracking-wide
-              shadow-[0_0_40px_rgba(255,215,0,0.8)]
-              hover:shadow-[0_0_70px_rgba(255,215,0,1)]
-              hover:scale-[1.04]
-              active:scale-95
-              transition-all duration-300"
+              className="w-full py-5 rounded-full bg-linear-to-r from-yellow-400 via-yellow-300 to-yellow-500 text-black text-xl md:text-2xl font-bold tracking-wide shadow-[0_0_40px_rgba(255,215,0,0.8)] hover:shadow-[0_0_70px_rgba(255,215,0,1)] hover:scale-[1.04] active:scale-95 transition-all duration-300"
             >
               ✨ Confirmar asistencia ✨
             </button>
