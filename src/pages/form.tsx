@@ -1,4 +1,39 @@
+import { useState } from "react";
+
 export default function MagicForm() {
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [mensajeEnviado, setMensajeEnviado] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!nombre || !apellido) {
+      alert("Por favor completá nombre y apellido ✨");
+      return;
+    }
+
+    const numero = "5491131418677"; // número de prueba
+    const mensaje = `✨ ¡El portal se ha abierto! ✨
+Yo ${nombre} ${apellido} confirmo mi asistencia a esta noche mágica.
+Gracias por permitirme ser parte de este capítulo tan especial.
+¡Nos vemos bajo las estrellas! 🌙💖`;
+    const mensajeCodificado = encodeURIComponent(mensaje);
+
+    const url = `https://wa.me/${numero}?text=${mensajeCodificado}`;
+
+    window.open(url, "_blank");
+
+    setMensajeEnviado(true);
+
+    setTimeout(() => {
+      setMensajeEnviado(false);
+    }, 4000);
+
+    setNombre("");
+    setApellido("");
+  };
+
   return (
     <div className="fixed inset-0 z-40 overflow-hidden">
       {/* 🎬 VIDEO DE FONDO */}
@@ -12,12 +47,26 @@ export default function MagicForm() {
         <source src="/background2.webm" type="video/webm" />
       </video>
 
-      {/* 🌫️ OVERLAY CLARO SOBRE VIDEO */}
+      {/* 🌫️ OVERLAY */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+
+      {/* ✨ MENSAJE MÁGICO */}
+      {mensajeEnviado && (
+        <div
+          className="absolute top-10 left-1/2 -translate-x-1/2 z-[999]
+          px-8 py-4 rounded-full
+          bg-linear-to-r from-pink-400 via-fuchsia-400 to-purple-500
+          text-white text-lg font-semibold
+          shadow-[0_0_40px_rgba(236,72,153,1)]"
+        >
+          ✨ Tu mensaje fue enviado al reino mágico ✨
+        </div>
+      )}
 
       {/* ✨ CONTENEDOR CENTRAL */}
       <div className="relative z-50 flex items-center justify-center h-full px-4">
         <form
+          onSubmit={handleSubmit}
           className="relative w-full max-w-5xl px-10 py-12 rounded-3xl
           bg-linear-to-b from-white/20 via-pink-200/10 to-purple-200/10
           backdrop-blur-xl border border-white/30
@@ -43,7 +92,6 @@ export default function MagicForm() {
 
           {/* 📍 INFO + MAPA */}
           <div className="relative grid md:grid-cols-2 gap-8 items-stretch text-white">
-            {/* Información */}
             <div className="space-y-4 text-lg">
               <p>
                 <span className="text-pink-200 font-semibold">
@@ -68,7 +116,6 @@ export default function MagicForm() {
               </p>
             </div>
 
-            {/* Mapa */}
             <div className="w-full h-64 md:h-full rounded-2xl overflow-hidden border border-white/30 shadow-xl">
               <iframe
                 title="Mapa"
@@ -89,6 +136,8 @@ export default function MagicForm() {
               <input
                 type="text"
                 placeholder="Nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
                 className="px-6 py-4 rounded-xl bg-white/10
                 border border-white/30 text-white text-lg
                 placeholder-white/70
@@ -100,6 +149,8 @@ export default function MagicForm() {
               <input
                 type="text"
                 placeholder="Apellido"
+                value={apellido}
+                onChange={(e) => setApellido(e.target.value)}
                 className="px-6 py-4 rounded-xl bg-white/10
                 border border-white/30 text-white text-lg
                 placeholder-white/70
