@@ -61,7 +61,7 @@ function App() {
       {/* BOTÓN */}
       {showButton && (
         <FairyButton
-          text="Entrar"
+          text="Ingresar"
           onClick={() => setShowForm(true)}
           className="
   absolute z-20 opacity-0 animate-fairyAppear
