@@ -19,7 +19,7 @@ export default function MagicForm() {
       return;
     }
 
-    const numero = "5491126509866";
+    const numero = "5491144779838";
 
     const mensaje = [
       "¡El portal se ha abierto!",
