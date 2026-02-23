@@ -6,7 +6,7 @@ export default function MagicForm() {
   const [cantidad, setCantidad] = useState(1);
   const [mensajeEnviado, setMensajeEnviado] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!nombre || !apellido) {
@@ -17,6 +17,27 @@ export default function MagicForm() {
     if (cantidad < 1) {
       alert("Ingresá al menos 1 asistente ✨");
       return;
+    }
+
+    // ✅ Guardar en Google Sheets
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbwX69cAlDKn3eXPOrjc2Hh0HbeAWp5nYGgtifTnBDABsMG70M2A2-WEyzK1hfS-I-Kjow/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombre,
+            apellido,
+            cantidad,
+          }),
+        },
+      );
+    } catch (error) {
+      console.error("Error guardando en Sheets:", error);
     }
 
     const numero = "5491144779838";
